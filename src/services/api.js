@@ -30,13 +30,22 @@ export const fetchReport = async (id, fechaDesde, fechaHasta) => {
       }
     }
   );
-  console.log(res);
   return res.data;
 };
 
-export const fetchPersonById = async (id) => {
-  const res = await axios.get(`${API_URL_CUENTAS}/personas/${id}`);
-  return res.data;
+export const fetchReportPDF = async (id, fechaDesde, fechaHasta) => {
+  const res = await axios.get(`${API_URL_CUENTAS}/reportes/pdf/${id}`, {
+    params: { fechaDesde, fechaHasta },
+    responseType: "text",
+  });
+
+  try {
+    const data = JSON.parse(res.data); 
+    return data.pdfBase64;
+  } catch (e) {
+    console.error("Error al parsear respuesta JSON:", e);
+    throw e;
+  }
 };
 
 

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchReport } from "../services/api";
+import { fetchReport, fetchReportPDF } from "../services/api";
 import { Link } from "react-router-dom";
 import { ReportListProps } from "./ReportList.interface";
 
 
 function ReportList() {
     const [reportList, setReportList] = useState<ReportListProps[]>([]);
-
-    console.log(reportList);
+    const [pdfBase64, setPdfBase64] = useState<string | null>(null);
 
     useEffect(() => {
       const id = 3;
@@ -19,19 +18,36 @@ function ReportList() {
         .catch(console.error);
     }, []);
 
-    const handleCreate = () => {
+    const generarYDescargarPdf = async () => {
+      const id = 3;
+      const dateFrom = '2025-04-01T00:00:00';
+      const dateTo = '2025-04-13T23:59:59';
+      
+      try {
+        const base64 = await fetchReportPDF(id, dateFrom, dateTo);
+        setPdfBase64(base64);
 
-      alert("PDF");
-    };
+        console.log(base64);
   
+        const link = document.createElement("a");
+        link.href = `data:application/pdf;base64,${base64}`; 
+        link.download = "reporte.pdf"; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link); 
+      } catch (error) {
+        console.error("Error generando PDF:", error);
+      }
+    };
+
 
     return (
 
       <div>
       <h1>Reporte</h1>
 
-      <button onClick={handleCreate} style={{ marginBottom: "10px" }}>
-        Descargar PDF
+      <button onClick={generarYDescargarPdf}>
+        Generar y Descargar PDF
       </button>
 
       <table border={1} cellPadding={10} cellSpacing={0}>
