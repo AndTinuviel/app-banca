@@ -13,12 +13,16 @@ function App() {
           <ul>
             <li><Link to="/">Clientes</Link></li>
             <li><Link to="/Cuentas">Cuentas</Link></li>
+            <li><Link to="/Movimientos">Movimientos</Link></li>
+            <li><Link to="/Reprotes">Reportes</Link></li>
           </ul>
         </nav>
     
         <main className="content">
           <Routes>
             <Route path="/" element={<ClientList />} />
+            <Route path="/Cuentas" element={<AccountList />} />
+            <Route path="/Cuentas" element={<AccountList />} />
             <Route path="/Cuentas" element={<AccountList />} />
           </Routes>
         </main>
