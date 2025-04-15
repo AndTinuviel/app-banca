@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
-import { fetchClient } from "../services/api";
+import { fetchAll } from "../services/api";
 import { Link } from "react-router-dom";
 import { ClientListProps } from "./ClientList.interface";
 
 
 function ClientList() {
     const [clientList, setClientList] = useState<ClientListProps[]>([]);
-
-    console.log(clientList);
+    const API_URL_CLIENTE = "http://localhost:8090/api/clientes";
 
     useEffect(() => {
-      fetchClient().then(setClientList).catch(console.error);
+      fetchAll(API_URL_CLIENTE).then(setClientList).catch(console.error);
     }, []);
 
-    const handleCreate = () => {
-
-      alert("Crear nuevo cliente");
-    };
   
     const handleEdit = (id: number) => {
       alert(`Editar cliente con ID: ${id}`);
@@ -34,9 +29,9 @@ function ClientList() {
       <div>
       <h1>Cuentas</h1>
 
-      <button onClick={handleCreate} style={{ marginBottom: "10px" }}>
-        Crear Nuevo Cliente
-      </button>
+      <Link to="/crear-cliente">
+        <button>Crear Nuevo Cliente</button>
+      </Link>
 
       <table border={1} cellPadding={10} cellSpacing={0}>
         <thead>

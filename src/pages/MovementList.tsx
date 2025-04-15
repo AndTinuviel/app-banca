@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { fetchMovement } from "../services/api";
+import { fetchAll } from "../services/api";
 import { Link } from "react-router-dom";
 import { MovementListProps } from "./MovementList.interface";
 
 
 function MovementList() {
     const [movementList, setMovementList] = useState<MovementListProps[]>([]);
-
-    console.log(movementList);
+    const API_URL_MOVIMIENTO = "http://localhost:9090/api/movimientos";
 
     useEffect(() => {
-      fetchMovement().then(setMovementList).catch(console.error);
+      fetchAll(API_URL_MOVIMIENTO).then(setMovementList).catch(console.error);
     }, []);
 
     const handleCreate = () => {

@@ -2,10 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ClientList } from './pages/ClientList';
-import { AccountList } from './pages/AccountList';
 import { MovementList } from './pages/MovementList';
 import { ReportList } from './pages/ReportList';
+import { AccountList } from './pages/AccountList';
 import './App.css';
+import { CreateClient } from './pages/CreateClient';
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
             <Route path="/Cuentas" element={<AccountList />} />
             <Route path="/Movimientos" element={<MovementList />} />
             <Route path="/Reportes" element={<ReportList />} />
+            <Route path="/crear-cliente" element={<CreateClient />} />
           </Routes>
         </main>
       </div>

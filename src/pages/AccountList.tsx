@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { fetchAccount } from "../services/api";
+import { fetchAll } from "../services/api";
 import { Link } from "react-router-dom";
 import { AccountListProps } from "./AccountList.interface";
 
 
 function AccountList() {
     const [accountList, setAccountList] = useState<AccountListProps[]>([]);
+    const API_URL_CUENTAS = "http://localhost:9090/api/cuentas";
 
     console.log(accountList);
 
     useEffect(() => {
-      fetchAccount().then(setAccountList).catch(console.error);
+      fetchAll(API_URL_CUENTAS).then(setAccountList).catch(console.error);
     }, []);
 
     const handleCreate = () => {
