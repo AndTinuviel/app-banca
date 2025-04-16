@@ -27,9 +27,9 @@ function ClientList() {
     return (
 
       <div>
-      <h1>Cuentas</h1>
+      <h1>Clientes</h1>
 
-      <Link to="/crear-cliente">
+      <Link to="/Clientes/crear">
         <button>Crear Nuevo Cliente</button>
       </Link>
 
@@ -55,8 +55,10 @@ function ClientList() {
               <td>{client.telefono}</td>
               <td>{client.estado}</td>
               <td>
-                <button onClick={() => handleEdit(client.id)}>Modificar</button>{" "}
-                <button onClick={() => handleDelete(client.id)}>Eliminar</button>
+              <Link to={`/clientes/editar/${client.id}`}>
+                <button>Modificar</button>
+              </Link>
+                
               </td>
             </tr>
           ))}

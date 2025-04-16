@@ -32,6 +32,17 @@ export const createClient = async (clientData) => {
   }
 };
 
+export const getClientById = async (id) => {
+  const res = await axios.get(`${API_URL_CLIENTE}/search/${id}`);
+  return res.data;
+};
+
+export const updateClient = async (id, cliente) => {
+  const res = await axios.put(`${API_URL_CLIENTE}/${id}`, cliente);
+  return res.data;
+};
+
+
 export const fetchReportPDF = async (id, fechaDesde, fechaHasta) => {
   const res = await axios.get(`${API_URL_CUENTAS}/reportes/pdf/${id}`, {
     params: { fechaDesde, fechaHasta },

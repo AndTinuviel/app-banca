@@ -28,7 +28,8 @@ function App() {
             <Route path="/Cuentas" element={<AccountList />} />
             <Route path="/Movimientos" element={<MovementList />} />
             <Route path="/Reportes" element={<ReportList />} />
-            <Route path="/crear-cliente" element={<CreateClient />} />
+            <Route path="/Clientes/crear" element={<CreateClient />} />
+            <Route path="/clientes/editar/:id" element={<CreateClient />} />
           </Routes>
         </main>
       </div>
